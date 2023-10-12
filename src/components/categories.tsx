@@ -1,6 +1,10 @@
 import { useCategories } from "../hooks/categories";
 
-export default function Categories ({ category, setCategory }) {
+type Props = {
+  category: string,
+  setCategory: (value: string) => void;
+}
+export default function Categories ({ category, setCategory }: Props) {
   const {loading, categories, error} = useCategories();
    
   return (

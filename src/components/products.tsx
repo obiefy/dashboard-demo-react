@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useProducts } from "../hooks/products";
 import Categories from "./categories";
 import Card from "./ui/card";
