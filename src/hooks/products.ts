@@ -4,19 +4,25 @@ import { fetchProducts } from "../utils/api";
 
 
 export const useProducts = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     async function getProducts() {
       // TODO: make pagination
       const limit = 5;
       setLoading(true);
-      const productsData = await fetchProducts(`products?limit=${limit}`);
-      setProducts(productsData);
+      setError('');
+      try {
+        const productsData = await fetchProducts(`products?limit=${limit}`);
+        setProducts(productsData);
+      } catch(e: Error) {
+        setError(e.message);
+      }
       setLoading(false);
     }
     getProducts();
   }, []);
 
-  return { loading, products };
+  return { loading, error, products };
 }
