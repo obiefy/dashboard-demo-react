@@ -10,14 +10,18 @@ export const useProducts = () => {
   useEffect(() => {
     async function getProducts() {
       // TODO: make pagination
-      const limit = 5;
+      // const limit = 5;
       setLoading(true);
       setError('');
       try {
         const productsData = await fetchProducts();
         setProducts(productsData);
       } catch(e) {
-        setError(e.message);
+        if(e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError(`Unexpected error: ${e}`)
+        }
       }
       setLoading(false);
     }
