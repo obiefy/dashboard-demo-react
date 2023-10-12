@@ -39,8 +39,8 @@ export default function Products () {
           </tr>
         </thead>
         <tbody>
-          {loading && <div>Loading</div>}
-          {error && !loading && <div>{error}</div>}
+          {loading && <tr className="animate-pulse"><td colSpan={5} className="h-12 bg-gray-200"></td></tr>}
+          {!loading && error && <tr><td colSpan={5} className="text-center text-red-800">{error}</td></tr>}
           {!loading && products.map((product) => (
             <tr key={product.id} className="border-t hover:bg-gray-50">
               <td className="p-4">

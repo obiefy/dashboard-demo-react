@@ -14,9 +14,9 @@ export const useProducts = () => {
       setLoading(true);
       setError('');
       try {
-        const productsData = await fetchProducts(`products?limit=${limit}`);
+        const productsData = await fetchProducts();
         setProducts(productsData);
-      } catch(e: Error) {
+      } catch(e) {
         setError(e.message);
       }
       setLoading(false);
